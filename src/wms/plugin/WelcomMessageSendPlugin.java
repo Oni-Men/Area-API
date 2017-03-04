@@ -12,8 +12,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import wms.PlayerEventListener;
+import wms.area.NormalArea;
 import wms.command.CommandRegister;
-import wms.town.NormalArea;
 
 public class WelcomMessageSendPlugin extends JavaPlugin{
 	

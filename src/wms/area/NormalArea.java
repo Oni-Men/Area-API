@@ -1,4 +1,4 @@
-package wms.town;
+package wms.area;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,6 @@ public class NormalArea extends AbstractArea{
 				this.chunks.add(new Location(loc1.getWorld(),x,0,z).getChunk());
 			}
 		}
-		System.out.println(this.chunks.size());
 	}
 	
 	public boolean equals(Object o) {

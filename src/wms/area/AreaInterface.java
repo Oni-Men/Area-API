@@ -1,4 +1,4 @@
-package wms.town;
+package wms.area;
 
 import java.util.HashSet;
 import java.util.List;

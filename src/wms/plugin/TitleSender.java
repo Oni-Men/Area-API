@@ -11,7 +11,7 @@ import net.minecraft.server.v1_8_R1.IChatBaseComponent;
 import net.minecraft.server.v1_8_R1.PacketPlayOutNamedSoundEffect;
 import net.minecraft.server.v1_8_R1.PacketPlayOutTitle;
 import net.minecraft.server.v1_8_R1.PlayerConnection;
-import wms.town.NormalArea;
+import wms.area.NormalArea;
 
 public class TitleSender {
 	

@@ -1,4 +1,4 @@
-package wms.town;
+package wms.area;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class ComplexArea extends AbstractArea{
 		this.areaName = areaName;
 		this.areaSubTitle = areaSubTitle;
 		
-		//’¸“_List<Location> (loc)‚©‚ç–Ê‚ğZo‚µ‚ÄChunk‚ğæ“¾‚·‚é
+		//ï¿½ï¿½ï¿½_List<Location> (loc)ï¿½ï¿½ï¿½ï¿½Ê‚ï¿½ï¿½Zï¿½oï¿½ï¿½ï¿½ï¿½Chunkï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 		//this.chunks.add(chuks);
 	}
 	

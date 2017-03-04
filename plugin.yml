@@ -1,0 +1,9 @@
+main: wms.plugin.WelcomMessageSendPlugin
+name: WelcomMessageSender
+
+version: 0.1
+
+commands:
+  arearegist:
+  areadelete:
+  areainfo:

@@ -3,15 +3,20 @@ package wms;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 import wms.command.AreaRegistCommand;
+import wms.gui.AreasInfoGui;
+import wms.gui.ManagementGui;
 
 
 public class PlayerEventListener implements Listener {
@@ -51,6 +56,27 @@ public class PlayerEventListener implements Listener {
 		Item itemDrop = e.getItemDrop();
 		if(itemDrop.getItemStack().equals(AreaRegistCommand.areaSelector)){
 			itemDrop.remove();
+		}
+	}
+	@EventHandler
+	public void clickInventory(InventoryClickEvent e){
+		
+		ItemStack currentItem = e.getCurrentItem();
+		HumanEntity whoClicked = e.getWhoClicked();
+		
+		if(e.getClickedInventory().equals(ManagementGui.managementGui)){
+			
+			ManagementGui.invClick(currentItem, whoClicked);
+			
+			e.setCancelled(true);
+			return;
+		}
+		if(e.getInventory().getName().equals(AreasInfoGui.area_info)){
+			
+			AreasInfoGui.clickAreaInfo(currentItem, whoClicked);
+			
+			e.setCancelled(true);
+			return;
 		}
 	}
 

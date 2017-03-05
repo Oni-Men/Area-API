@@ -13,5 +13,6 @@ public class CommandRegister {
 		WmsCommandManager.wmsCommands.put("start", new WmsStartCommand("start"));
 		WmsCommandManager.wmsCommands.put("stop", new WmsStopCommand("stop"));
 		WmsCommandManager.wmsCommands.put("reload", new WmsReloadCommand("reload"));
+		WmsCommandManager.wmsCommands.put("gui", new WmsGuiCommand("gui"));
 	}
 }

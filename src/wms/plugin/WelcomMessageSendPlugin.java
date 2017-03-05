@@ -8,6 +8,7 @@ import java.util.List;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,6 +19,7 @@ import wms.command.CommandRegister;
 public class WelcomMessageSendPlugin extends JavaPlugin{
 	
 	public static JavaPlugin plugin;
+	public static FileConfiguration config;
 	public static HashMap<Chunk, NormalArea> areaMap = new HashMap<>();
 	public static HashMap<Player, NormalArea> playerMap = new HashMap<>();
 	public static HashSet<World> worldSet = new HashSet<>();
@@ -27,14 +29,24 @@ public class WelcomMessageSendPlugin extends JavaPlugin{
 	@Override
 	public void onEnable(){
 		plugin = this;
+		saveDefaultConfig();
+		config = getConfig();
+		
 		getServer().getPluginManager().registerEvents(new PlayerEventListener(), plugin);
 		CommandRegister.registCommand();
-		oni();
+		
 		state = true;
 		AreaCheckController.areaCheckController();
 	}
 	@Override
 	public void onDisable(){
+		saveConfig();
+	}
+	public static String bindString(String areaName, String[] args){
+		for(int i=0;i<args.length;i++){
+			areaName += args[i] + " ";
+		}
+		return areaName.trim();
 		
 	}
 	public void oni(){

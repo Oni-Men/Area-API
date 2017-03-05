@@ -3,16 +3,18 @@ package wms;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import wms.command.AreaRegistCommand;
 
 
-public class PlayerEventListener implements Listener{
+public class PlayerEventListener implements Listener {
 	
 	@EventHandler
 	public void areaSelect(PlayerInteractEvent e){
@@ -42,6 +44,13 @@ public class PlayerEventListener implements Listener{
 			player.sendMessage(ChatColor.GREEN+"1つ目の場所を指定しました。");
 			return;
 			
+		}
+	}
+	@EventHandler
+	public void dropAreaSelector(PlayerDropItemEvent e){
+		Item itemDrop = e.getItemDrop();
+		if(itemDrop.getItemStack().equals(AreaRegistCommand.areaSelector)){
+			itemDrop.remove();
 		}
 	}
 

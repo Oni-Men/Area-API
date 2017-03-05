@@ -3,7 +3,5 @@ name: WelcomMessageSender
 
 version: 0.1
 
-commands:
-  arearegist:
-  areadelete:
-  areainfo:
+commands: 
+  wms: 

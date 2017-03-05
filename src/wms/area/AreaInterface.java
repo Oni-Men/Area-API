@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public interface AreaInterface {
@@ -14,6 +15,8 @@ public interface AreaInterface {
 	String getAreaSubTitle();
 	
 	HashSet<Chunk> getChunks();
+	
+	List<Location> getLocations();
 	
 	List<UUID> getPlayersInArea();
 	

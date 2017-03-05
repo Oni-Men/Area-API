@@ -12,6 +12,8 @@ public class NormalArea extends AbstractArea{
 	public NormalArea(String areaName,String areaSubTitle,Location loc1,Location loc2){
 		this.areaName = areaName;
 		this.areaSubTitle = areaSubTitle;
+		this.locations.add(loc1);
+		this.locations.add(loc2);
 		
 		int minX = Math.min(loc1.getBlockX(),loc2.getBlockX());
 		int maxX = Math.max(loc1.getBlockX(),loc2.getBlockX());

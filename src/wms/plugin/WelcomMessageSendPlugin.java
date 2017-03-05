@@ -6,12 +6,12 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.bukkit.Chunk;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import wms.AreaLoader;
 import wms.PlayerEventListener;
 import wms.area.NormalArea;
 import wms.command.CommandRegister;
@@ -34,6 +34,7 @@ public class WelcomMessageSendPlugin extends JavaPlugin{
 		
 		getServer().getPluginManager().registerEvents(new PlayerEventListener(), plugin);
 		CommandRegister.registCommand();
+		AreaLoader.areaLoader();
 		
 		state = true;
 		AreaCheckController.areaCheckController();
@@ -49,17 +50,23 @@ public class WelcomMessageSendPlugin extends JavaPlugin{
 		return areaName.trim();
 		
 	}
-	public void oni(){
-		World w = this.getServer().getWorld("onimen");
-		worldSet.add(w);
-		Location loc1 = new Location(w,310,0,1050);
-		Location loc2 = new Location(w,322,0,1033);
+	public static List<List<?>> listDivider(List<?> list, int i){
+		List<List<?>> obj = new ArrayList<>();
 		
-		NormalArea onimen = new NormalArea("Area B", "Welcom to Area B, ", loc1 , loc2);
-		areaList.add(onimen);
-		for(Chunk c : onimen.getChunks()){
-			areaMap.put(c, onimen);
+		if(list.isEmpty() || i == 0){
+			obj.add(list);
+			return obj;
 		}
+		int size = list.size()/i + (list.size()%i > 0 ? 1 : 0);
 		
+		for( int j = 0; j < size; j ++ ){
+			int fromIndex = j * i;
+			int toIndex = Math.min(fromIndex + i, list.size());
+			List<?> subList = list.subList(fromIndex, toIndex);
+			
+			obj.add(subList);
+		}
+		return obj;
 	}
+	
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public abstract class AbstractArea implements AreaInterface{
@@ -13,6 +14,7 @@ public abstract class AbstractArea implements AreaInterface{
 	String areaName;
 	String areaSubTitle;
 	List<UUID> players = new ArrayList<>();
+	List<Location> locations = new ArrayList<>();
 	HashSet<Chunk> chunks = new HashSet<>();
 	
 	@Override
@@ -48,6 +50,10 @@ public abstract class AbstractArea implements AreaInterface{
 	@Override
 	public HashSet<Chunk> getChunks(){
 		return chunks;
+	}
+	@Override 
+	public List<Location> getLocations(){
+		return locations;
 	}
 
 }

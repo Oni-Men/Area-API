@@ -2,11 +2,10 @@ package wms.area.manager;
 
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import wms.area.NormalArea;
@@ -17,13 +16,13 @@ public class AreaRegistManager {
 		
 		String areaName = area.getAreaName();
 		String areaSubTitle = area.getAreaSubTitle();
-		HashSet<Chunk> chunks = area.getChunks();
+		List<Location> locs = area.getLocations();
 		
 		List<Object> areaList = new ArrayList<>();
 		
 		areaList.add(areaName);
 		areaList.add(areaSubTitle);
-		areaList.add(chunks);
+		areaList.add(locs);
 		
 		WelcomMessageSendPlugin.config.set(areaName, areaList);
 		WelcomMessageSendPlugin.plugin.saveConfig();

@@ -37,7 +37,7 @@ public class TitleSender {
 	public static void sendTitle(String name, String subTitle,Player p){
 		
 		IChatBaseComponent title = ChatSerializer.a("{\"text\":\"" +name+ "\",\"color\":\"green\"}");
-		IChatBaseComponent sub = ChatSerializer.a("{\"text\":\"" +subTitle + p.getName()+ "\",\"color\":\"green\"}");
+		IChatBaseComponent sub = ChatSerializer.a("{\"text\":\"" +subTitle +", "+ p.getName()+ "\",\"color\":\"green\"}");
 		
 		float random = (float) Math.random();
 		if(random <= 0.5){random += 0.4;}

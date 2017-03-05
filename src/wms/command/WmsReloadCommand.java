@@ -20,7 +20,7 @@ public class WmsReloadCommand extends AbstractWmsCommand implements WmsCommandIn
 		
 		WelcomMessageSendPlugin.state = false;
 		
-		sender.sendMessage(ChatColor.GREEN+"3秒後にWMSを再開しまし。");
+		sender.sendMessage(ChatColor.GREEN+"3秒後にWMSを再開します。");
 		
 		new BukkitRunnable() {
 			@Override
@@ -31,6 +31,8 @@ public class WmsReloadCommand extends AbstractWmsCommand implements WmsCommandIn
 				WelcomMessageSendPlugin.state = true;
 				
 				AreaCheckController.areaCheckController();
+				
+				sender.sendMessage(ChatColor.GREEN+"WMSを再開しました。");
 				
 			}
 		}.runTaskLater(WelcomMessageSendPlugin.plugin, 20*3);

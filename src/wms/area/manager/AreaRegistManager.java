@@ -28,5 +28,7 @@ public class AreaRegistManager {
 		WelcomMessageSendPlugin.plugin.saveConfig();
 		
 		p.sendMessage(ChatColor.GREEN+area.getAreaName()+"を登録しました。");
+		
+		WelcomMessageSendPlugin.plugin.saveConfig();
 	}
 }

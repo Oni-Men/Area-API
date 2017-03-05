@@ -15,6 +15,9 @@ public class AreaDeleteManager {
 			WelcomMessageSendPlugin.plugin.saveConfig();
 		
 			p.sendMessage(ChatColor.DARK_PURPLE+trim+"を削除しました。");
+			
+			WelcomMessageSendPlugin.plugin.saveConfig();
+			
 		}else{
 			p.sendMessage(ChatColor.DARK_PURPLE+trim+"は存在しません。");
 		}

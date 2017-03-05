@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -19,7 +20,16 @@ public class WmsCommandManager implements CommandExecutor, TabCompleter{
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
 		
-		if(args.length == 0)return false;
+		if(args.length == 0){
+			
+			sender.sendMessage(ChatColor.GREEN+"=Welcom Message Sender Info=");
+			sender.sendMessage(ChatColor.GREEN+(WelcomMessageSendPlugin.state ? "WMS: 稼働中" : "WMS: 停止中" ));
+			sender.sendMessage(ChatColor.GREEN+"エリア数： "+WelcomMessageSendPlugin.areaList.size());
+			sender.sendMessage(ChatColor.GREEN+"ワールド数： "+WelcomMessageSendPlugin.worldSet.size());
+			sender.sendMessage(ChatColor.GREEN+"チャンク数： "+WelcomMessageSendPlugin.areaMap.size());
+			
+			return true;
+		}
 		
 		if(wmsCommands.containsKey(args[0])){
 			 WmsCommandInterface command = wmsCommands.get(args[0]);

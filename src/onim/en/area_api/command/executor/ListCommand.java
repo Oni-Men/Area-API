@@ -12,7 +12,7 @@ public class ListCommand extends AreaCommandExecutor {
   public boolean execute(Player player, String[] args) {
 
     for (AreaModel area : AreaManager.getAllAreas()) {
-      player.sendMessage(String.format("%s, %s (%s)", area.getDecoratedName(), area.getDecoratedMessage(),
+      this.info(player, String.format("%s, %s (%s)", area.getDecoratedName(), area.getDecoratedMessage(),
           area.getType().getLiteral()));
     }
 

@@ -1,6 +1,5 @@
 package onim.en.area_api.command.executor;
 
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import onim.en.area_api.area.AreaManager;
@@ -20,12 +19,12 @@ public class RemoveCommand extends AreaCommandExecutor {
     AreaModel area = AreaManager.getAreaByName(areaName);
 
     if (area == null) {
-      player.sendMessage(ChatColor.RED + String.format("Couldn't find the area \"%s\".", areaName));
+      this.error(player, String.format("Couldn't find the area \"%s\".", areaName));
       return false;
     }
 
     AreaManager.unregister(area);
-    player.sendMessage(ChatColor.GREEN + String.format("\"%s\" removed successfully.", areaName));
+    this.info(player, String.format("\"%s\" removed successfully.", areaName));
 
     return true;
   }

@@ -2,7 +2,6 @@ package onim.en.area_api.command.executor;
 
 import java.util.Arrays;
 
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import joptsimple.internal.Strings;
@@ -20,7 +19,7 @@ public class CreateCommand extends AreaCommandExecutor {
   @Override
   public boolean execute(Player player, String[] args) {
     if (args.length <= 2) {
-      player.sendMessage(ChatColor.RED + "The size of the argument was not enough.");
+      this.error(player, "The size of the argument was not enough.");
       return false;
     }
 

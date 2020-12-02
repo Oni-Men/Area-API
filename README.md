@@ -1,14 +1,8 @@
-# CityTitleMessenger
-WelcomMessageSender(WMS)
+# Area-API
 
-指定した範囲(チャンク)にプレイヤーが入ったらTitleとSubTitleが表示される。
-/wms [start|stop|reload|gui|delte|regist|info] --タブ補完対応。
-
--start  : WMSを開始する。(WMS停止中の場合のみ)
--stop   : WMSを停止する。(WMS動作中の場合のみ)
--reload : WMSをリロードする。(コンフィグを再読み込みする。)
--gui    : GUIから管理する。
--delte  : エリアを削除する。
--regist : エリアを登録する。
--info   : エリアの情報を表示する。(/wms info [n] - nでページ数指定)
-  
+## 概要
+- エリアの種類、名前、説明を決めて範囲を指定します。これを一つのエリアとします。
+- エリアの種類は、矩形、円形、多角形があります。
+- エリアへの出入りをイベントで拾うことができます。
+- エリア内のプレイヤーを取得できます。
+- コマンド、プログラムから設定の確認/変更が可能です。

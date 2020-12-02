@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.Maps;
 
+import onim.en.area_api.command.executor.AboutCommand;
 import onim.en.area_api.command.executor.CreateCommand;
 import onim.en.area_api.command.executor.ListCommand;
 import onim.en.area_api.command.executor.RemoveCommand;
@@ -24,6 +25,7 @@ public class AreaCommand implements CommandExecutor, TabCompleter {
     operationToExecutor.put(CommandOperation.CREATE, new CreateCommand());
     operationToExecutor.put(CommandOperation.REMOVE, new RemoveCommand());
     operationToExecutor.put(CommandOperation.LIST, new ListCommand());
+    operationToExecutor.put(CommandOperation.ABOUT, new AboutCommand());
   }
 
   @Override

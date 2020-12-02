@@ -2,6 +2,8 @@ package onim.en.area_api.area;
 
 import java.util.HashMap;
 
+import javax.annotation.Nullable;
+
 import com.google.common.collect.Maps;
 
 public enum AreaType {
@@ -17,6 +19,11 @@ public enum AreaType {
         labelToType.put(alias, type);
       }
     }
+  }
+
+  @Nullable
+  public static AreaType fromLiteral(String literal) {
+    return labelToType.get(literal);
   }
 
   private final String literal;

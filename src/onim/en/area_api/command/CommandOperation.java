@@ -9,7 +9,7 @@ public enum CommandOperation {
   REMOVE("remove"),
   LIST("list"),
   SET("set"),
-  GET("get");
+  ABOUT("about");
 
   private static HashMap<String, CommandOperation> literalToOperation;
   static {

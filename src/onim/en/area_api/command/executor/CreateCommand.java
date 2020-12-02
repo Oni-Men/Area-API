@@ -6,6 +6,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import joptsimple.internal.Strings;
+import onim.en.area_api.area.AreaType;
 import onim.en.area_api.area.builder.AreaBuilder;
 import onim.en.area_api.area.builder.AreaBuilderManager;
 import onim.en.area_api.area.builder.CircleBuilder;
@@ -23,22 +24,26 @@ public class CreateCommand extends AreaCommandExecutor {
       return false;
     }
 
-    String areaType = args[0];
+    AreaType areaType = AreaType.fromLiteral(args[0]);
+    if (areaType == null) {
+      this.error(player, String.format("Unknown area type \"%s\"", args[0]));
+      return false;
+    }
+
     String areaName = args[1];
     String areaMessage = Strings.join(Arrays.copyOfRange(args, 2, args.length), " ");
 
     switch (areaType) {
-    case "rect":
+    case RECTANGLE:
       this.createRectangle(player, areaName, areaMessage);
       break;
-    case "circle":
+    case CIRCLE:
       this.createCircle(player, areaName, areaMessage);
       break;
-    case "polygon":
+    case POLYGON:
       this.createPolygon(player, areaName, areaMessage);
       break;
     }
-
     return true;
   }
 

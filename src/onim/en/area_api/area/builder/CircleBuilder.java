@@ -8,8 +8,8 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.Lists;
 
+import onim.en.area_api.area.AreaModel;
 import onim.en.area_api.area.model.CircleArea;
-import onim.en.area_api.util.AreaUtils;
 
 public class CircleBuilder extends AreaBuilder<CircleArea> {
 
@@ -24,6 +24,10 @@ public class CircleBuilder extends AreaBuilder<CircleArea> {
 
   public CircleBuilder(Player player) {
     super(player);
+  }
+
+  public CircleBuilder(Player player, AreaModel area) {
+    super(player, area);
   }
 
   @Override
@@ -47,9 +51,8 @@ public class CircleBuilder extends AreaBuilder<CircleArea> {
 
   @Override
   public CircleArea create() {
-    String id = AreaUtils.createAreaId(16);
     double r = Math.hypot(origin.getX() - radius.getX(), origin.getZ() - radius.getZ());
-    CircleArea area = new CircleArea(id, areaName, origin, (int) r);
+    CircleArea area = new CircleArea(areaId, areaName, origin, (int) r);
     area.setAreaMessage(areaMessage);
     return area;
   }

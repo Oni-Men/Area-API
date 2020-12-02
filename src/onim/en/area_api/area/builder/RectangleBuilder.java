@@ -9,8 +9,8 @@ import org.bukkit.entity.Player;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
+import onim.en.area_api.area.AreaModel;
 import onim.en.area_api.area.model.RectangleArea;
-import onim.en.area_api.util.AreaUtils;
 
 public class RectangleBuilder extends AreaBuilder<RectangleArea> {
 
@@ -27,12 +27,14 @@ public class RectangleBuilder extends AreaBuilder<RectangleArea> {
     super(player);
   }
 
+  public RectangleBuilder(Player player, AreaModel area) {
+    super(player, area);
+  }
+
   @Override
   public RectangleArea create() {
     Preconditions.checkState(pos1 != null && pos2 != null, "Either pos1 or pos2 is null.");
-
-    String id = AreaUtils.createAreaId(16);
-    RectangleArea area = new RectangleArea(id, areaName, pos1, pos2);
+    RectangleArea area = new RectangleArea(areaId, areaName, pos1, pos2);
     area.setAreaMessage(areaMessage);
     return area;
   }

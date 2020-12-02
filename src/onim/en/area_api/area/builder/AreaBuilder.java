@@ -9,20 +9,36 @@ import org.bukkit.entity.Player;
 import com.google.common.base.Preconditions;
 
 import onim.en.area_api.area.AreaManager;
+import onim.en.area_api.area.AreaModel;
 import onim.en.area_api.area.model.AbstractArea;
 
 public abstract class AreaBuilder<T extends AbstractArea> {
 
   public final Player player;
-  public String areaName;
-  public String areaMessage;
+  protected String areaId;
+  protected String areaName;
+  protected String areaMessage;
+  protected ChatColor[] decorators;
 
   public AreaBuilder(Player player) {
     Preconditions.checkNotNull(player, "The given argument player must not be null");
     this.player = player;
   }
 
+  public AreaBuilder(Player player, AreaModel area) {
+    this(player);
+    this.areaId = area.getAreaId();
+    this.areaName = area.getAreaName();
+    this.areaMessage = area.getAreaMessage();
+    this.decorators = area.getDecorators();
+  }
+
   public void onDestroy() {
+  }
+
+  public AreaBuilder<T> id(String areaId) {
+    this.areaId = areaId;
+    return this;
   }
 
   public AreaBuilder<T> name(String name) {
@@ -32,6 +48,11 @@ public abstract class AreaBuilder<T extends AbstractArea> {
 
   public AreaBuilder<T> message(String message) {
     this.areaMessage = message;
+    return this;
+  }
+
+  public AreaBuilder<T> decorator(ChatColor[] decorators) {
+    this.decorators = decorators;
     return this;
   }
 

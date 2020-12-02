@@ -1,7 +1,7 @@
-main: wms.plugin.WelcomMessageSendPlugin
-name: WelcomMessageSender
+main: onim.en.area_api.AreaAPI
+name: AreaAPI
 
 version: 0.1
 
 commands: 
-  wms: 
+  area: 

@@ -9,20 +9,20 @@ public class AreaUtils {
 
   private static final String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 
-  public static String createAreaId(int size) {
+  public static String createAreaId() {
     StringBuilder builder = new StringBuilder();
     Random random = new Random();
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < 16; i++) {
       random.setSeed(System.nanoTime() + i);
       builder.append(characters.charAt(random.nextInt(characters.length())));
     }
-    return regenerateIfAlreadyExists(builder.toString(), size);
+    return regenerateIfAlreadyExists(builder.toString());
   }
 
-  public static String regenerateIfAlreadyExists(String id, int size) {
+  public static String regenerateIfAlreadyExists(String id) {
     AreaModel area = AreaManager.getArea(id);
     if (area != null) {
-      return createAreaId(size);
+      return createAreaId();
     }
     return id;
   }

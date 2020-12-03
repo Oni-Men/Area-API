@@ -11,6 +11,7 @@ import com.google.common.base.Preconditions;
 import onim.en.area_api.area.AreaManager;
 import onim.en.area_api.area.AreaModel;
 import onim.en.area_api.area.model.AbstractArea;
+import onim.en.area_api.util.AreaUtils;
 
 public abstract class AreaBuilder<T extends AbstractArea> {
 
@@ -57,6 +58,10 @@ public abstract class AreaBuilder<T extends AbstractArea> {
   }
 
   public void createAndRegister() {
+    if (this.areaId == null) {
+      this.areaId = AreaUtils.createAreaId();
+    }
+
     T create = this.create();
 
     if (create == null)

@@ -1,7 +1,6 @@
 package onim.en.area_api.area.model;
 
 import java.util.Collection;
-import java.util.UUID;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -13,9 +12,6 @@ import com.google.gson.annotations.Expose;
 import onim.en.area_api.area.AreaType;
 
 public class RectangleArea extends AbstractArea {
-
-  @Expose
-  public UUID worldUniqueId;
 
   @Expose
   public int top, left, width, height;

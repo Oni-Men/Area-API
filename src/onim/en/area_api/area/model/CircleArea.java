@@ -1,17 +1,19 @@
 package onim.en.area_api.area.model;
 
 import java.util.Collection;
-import java.util.UUID;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+
+import com.google.gson.annotations.Expose;
 
 import onim.en.area_api.area.AreaType;
 
 public class CircleArea extends AbstractArea {
 
-  public UUID worldUniqueId;
+  @Expose
   public int originX, originZ;
+  @Expose
   public int radius;
 
   public CircleArea(String areaId, String areaName, Location origin, int radius) {

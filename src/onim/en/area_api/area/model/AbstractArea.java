@@ -14,11 +14,12 @@ import onim.en.area_api.area.AreaModel;
 import onim.en.area_api.area.AreaType;
 import onim.en.area_api.event.PlayerEnterAreaEvent;
 import onim.en.area_api.event.PlayerLeaveAreaEvent;
-import onim.en.area_api.util.AreaUtils;
 
 public abstract class AbstractArea implements AreaModel {
 
   private List<UUID> players;
+  @Expose
+  protected UUID worldUniqueId;
   @Expose
   protected final AreaType areaType;
   @Expose
@@ -31,9 +32,6 @@ public abstract class AbstractArea implements AreaModel {
   protected ChatColor[] decorators;
 
   public AbstractArea(AreaType areaType, String areaId, String areaName) {
-    if (areaId == null) {
-      this.areaId = AreaUtils.createAreaId(16);
-    }
     this.areaType = areaType;
     this.areaId = areaId;
     this.areaName = areaName;

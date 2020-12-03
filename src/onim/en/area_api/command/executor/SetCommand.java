@@ -38,15 +38,15 @@ public class SetCommand extends AreaCommandExecutor {
       return false;
     }
 
-    String[] subArgs = Arrays.copyOfRange(args, 2, 1);
+    String[] subArgs = Arrays.copyOfRange(args, 2, args.length);
 
     switch (paramType) {
     case "name":
       if (subArgs.length == 0) {
-        this.error(player, "You must specify new area name. empty string not allowed");
+        this.error(player, "Empty string is not allowed");
         return false;
       }
-      area.setAreaMessage(subArgs[0]);
+      area.setAreaName(String.join(" ", subArgs));
       break;
     case "message":
       area.setAreaMessage(String.join(" ", subArgs));
@@ -66,7 +66,13 @@ public class SetCommand extends AreaCommandExecutor {
 
   private ChatColor[] toDecorationArray(String[] subArgs) {
     List<ChatColor> decorations = Stream.of(subArgs)
-        .map(s -> ChatColor.valueOf(s))
+        .map(s -> {
+          try {
+            return ChatColor.valueOf(s.toUpperCase());
+          } catch (IllegalArgumentException e) {
+            return null;
+          }
+        })
         .filter(d -> d != null)
         .collect(Collectors.toList());
     return decorations.toArray(new ChatColor[decorations.size()]);

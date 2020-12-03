@@ -17,6 +17,7 @@ import onim.en.area_api.command.executor.AboutCommand;
 import onim.en.area_api.command.executor.CreateCommand;
 import onim.en.area_api.command.executor.ListCommand;
 import onim.en.area_api.command.executor.RemoveCommand;
+import onim.en.area_api.command.executor.SetCommand;
 
 public class AreaCommand implements CommandExecutor, TabCompleter {
 
@@ -26,6 +27,7 @@ public class AreaCommand implements CommandExecutor, TabCompleter {
     operationToExecutor.put(CommandOperation.REMOVE, new RemoveCommand());
     operationToExecutor.put(CommandOperation.LIST, new ListCommand());
     operationToExecutor.put(CommandOperation.ABOUT, new AboutCommand());
+    operationToExecutor.put(CommandOperation.SET, new SetCommand());
   }
 
   @Override

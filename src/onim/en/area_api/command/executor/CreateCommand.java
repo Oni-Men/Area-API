@@ -9,8 +9,10 @@ import onim.en.area_api.area.AreaType;
 import onim.en.area_api.area.builder.AreaBuilder;
 import onim.en.area_api.area.builder.AreaBuilderManager;
 import onim.en.area_api.area.builder.CircleBuilder;
+import onim.en.area_api.area.builder.PolygonBuilder;
 import onim.en.area_api.area.builder.RectangleBuilder;
 import onim.en.area_api.area.model.CircleArea;
+import onim.en.area_api.area.model.PolygonArea;
 import onim.en.area_api.area.model.RectangleArea;
 import onim.en.area_api.command.AreaCommandExecutor;
 
@@ -59,6 +61,8 @@ public class CreateCommand extends AreaCommandExecutor {
   }
 
   private void createPolygon(Player player, String areaName, String areaMessage) {
-
+    AreaBuilder<PolygonArea> builder = new PolygonBuilder(player).name(areaName).message(areaMessage);
+    AreaBuilderManager.register(player.getUniqueId(), builder);
+    builder.sendInstruction();
   }
 }

@@ -14,8 +14,10 @@ import onim.en.area_api.area.AreaType;
 import onim.en.area_api.area.builder.AreaBuilder;
 import onim.en.area_api.area.builder.AreaBuilderManager;
 import onim.en.area_api.area.builder.CircleBuilder;
+import onim.en.area_api.area.builder.PolygonBuilder;
 import onim.en.area_api.area.builder.RectangleBuilder;
 import onim.en.area_api.area.model.CircleArea;
+import onim.en.area_api.area.model.PolygonArea;
 import onim.en.area_api.area.model.RectangleArea;
 import onim.en.area_api.command.AreaCommandExecutor;
 
@@ -85,7 +87,7 @@ public class SetCommand extends AreaCommandExecutor {
       this.createCircle(player, area);
       break;
     case POLYGON:
-      this.createPolygon(player);
+      this.createPolygon(player, area);
       break;
     }
 
@@ -104,7 +106,9 @@ public class SetCommand extends AreaCommandExecutor {
     builder.sendInstruction();
   }
 
-  private void createPolygon(Player player) {
-
+  private void createPolygon(Player player, AreaModel area) {
+    AreaBuilder<PolygonArea> builder = new PolygonBuilder(player, area);
+    AreaBuilderManager.register(player.getUniqueId(), builder);
+    builder.sendInstruction();
   }
 }

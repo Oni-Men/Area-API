@@ -8,19 +8,19 @@ import org.bukkit.entity.Player;
 import com.google.gson.annotations.Expose;
 
 import onim.en.area_api.area.AreaType;
+import onim.en.area_api.util.math.Vec2;
 
 public class CircleArea extends AbstractArea {
 
   @Expose
-  public int originX, originZ;
+  public Vec2 origin;
   @Expose
   public int radius;
 
   public CircleArea(String areaId, String areaName, Location origin, int radius) {
     super(AreaType.CIRCLE, areaId, areaName);
     this.worldUniqueId = origin.getWorld().getUID();
-    this.originX = origin.getBlockX();
-    this.originZ = origin.getBlockZ();
+    this.origin = new Vec2(origin.getBlockX(), origin.getBlockZ());
     this.radius = radius;
   }
 
@@ -35,7 +35,7 @@ public class CircleArea extends AbstractArea {
 
       double x = location.getX();
       double z = location.getZ();
-      double distance = Math.sqrt(Math.pow(this.originX - x, 2) + Math.pow(this.originZ - z, 2));
+      double distance = this.origin.distance(x, z);
       if (distance <= radius) {
         this.addIfAbsent(player);
       } else {

@@ -21,8 +21,17 @@ public class Vec2 {
     this((double) x, (double) y);
   }
 
+  public double length() {
+    return Math.hypot(this.x, this.y);
+  }
+
+  public double distance(double x, double y) {
+    return Math.hypot(this.x - x, this.y - y);
+  }
+
   public static Vec2 fromPlayer(Player player) {
     Location location = player.getLocation();
     return new Vec2(location.getX(), location.getZ());
   }
+
 }

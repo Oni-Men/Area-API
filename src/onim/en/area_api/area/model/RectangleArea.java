@@ -25,7 +25,7 @@ public class RectangleArea extends AbstractArea {
     int minZ = Math.min(loc1.getBlockZ(), loc2.getBlockZ());
     int maxZ = Math.max(loc1.getBlockZ(), loc2.getBlockZ());
 
-    Preconditions.checkArgument(loc1.getWorld().equals(loc2.getWorld()), "Cannot define area across world");
+    Preconditions.checkArgument(loc1.getWorld().equals(loc2.getWorld()), "Cannot define area across the world");
 
     World world = loc1.getWorld();
     this.worldUniqueId = world.getUID();

@@ -1,5 +1,8 @@
 package onim.en.area_api.command.executor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.entity.Player;
 
 import onim.en.area_api.area.AreaManager;
@@ -27,6 +30,17 @@ public class RemoveCommand extends AreaCommandExecutor {
     this.info(player, String.format("\"%s\" removed successfully.", areaName));
 
     return true;
+  }
+
+  @Override
+  public List<String> completion(String[] args) {
+    if (args.length == 1) {
+      List<String> list = new ArrayList<>();
+      list.addAll(AreaManager.getAreaNames());
+      return list;
+    }
+
+    return super.completion(args);
   }
 
 }

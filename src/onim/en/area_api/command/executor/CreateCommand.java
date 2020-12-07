@@ -1,10 +1,13 @@
 package onim.en.area_api.command.executor;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.bukkit.entity.Player;
 
 import joptsimple.internal.Strings;
+import onim.en.area_api.area.AreaManager;
 import onim.en.area_api.area.AreaType;
 import onim.en.area_api.area.builder.AreaBuilder;
 import onim.en.area_api.area.builder.AreaBuilderManager;
@@ -34,6 +37,11 @@ public class CreateCommand extends AreaCommandExecutor {
     String areaName = args[1];
     String areaMessage = Strings.join(Arrays.copyOfRange(args, 2, args.length), " ");
 
+    if (AreaManager.exists(areaName)) {
+      this.error(player, String.format("%s has already existed.", areaName));
+      return false;
+    }
+
     switch (areaType) {
     case RECTANGLE:
       this.createRectangle(player, areaName, areaMessage);
@@ -46,6 +54,20 @@ public class CreateCommand extends AreaCommandExecutor {
       break;
     }
     return true;
+  }
+
+  @Override
+  public List<String> completion(String[] args) {
+    List<String> list = new ArrayList<>();
+    switch (args.length) {
+    case 1:
+      for (AreaType type : AreaType.values()) {
+        list.add(type.getLiteral());
+      }
+      break;
+    default:
+    }
+    return list;
   }
 
   private void createRectangle(Player player, String areaName, String areaMessage) {

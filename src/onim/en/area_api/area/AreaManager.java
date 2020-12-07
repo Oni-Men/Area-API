@@ -53,6 +53,10 @@ public class AreaManager {
     return nameToAreas.get(areaName);
   }
 
+  public static boolean exists(String areaName) {
+    return nameToAreas.containsKey(areaName);
+  }
+
   @Nonnull
   public static Collection<AreaModel> getAreaForInterface(Class<?> i) {
     return classToAreaMap.containsKey(i) ? classToAreaMap.get(i) : new ArrayList<>();
@@ -61,6 +65,10 @@ public class AreaManager {
   @Nonnull
   public static Collection<AreaModel> getAllAreas() {
     return idToAreas.values();
+  }
+
+  public static Collection<String> getAreaNames() {
+    return nameToAreas.keySet();
   }
 
 }

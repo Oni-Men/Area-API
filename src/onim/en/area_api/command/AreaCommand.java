@@ -62,6 +62,7 @@ public class AreaCommand implements CommandExecutor, TabCompleter {
       operationToExecutor.keySet().forEach(operation -> {
         list.add(operation.getLiteral());
       });
+      return list;
     } else {
       CommandOperation operation = CommandOperation.fromLiteral(args[0]);
       String[] subArgs = Arrays.copyOfRange(args, 1, args.length);
@@ -75,10 +76,8 @@ public class AreaCommand implements CommandExecutor, TabCompleter {
         return null;
 
       return executor.completion(subArgs);
-
     }
 
-    return null;
   }
 
 }

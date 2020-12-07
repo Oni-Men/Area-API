@@ -33,7 +33,10 @@ public class AreaAPI extends JavaPlugin {
     AreaStorage.loadAreas();
     AreaTaskWorker.start();
 
-    getCommand("area").setExecutor(new AreaCommand());
+    AreaCommand areaCommand = new AreaCommand();
+
+    getCommand("area").setExecutor(areaCommand);
+    getCommand("area").setTabCompleter(areaCommand);
   }
 
   @Override

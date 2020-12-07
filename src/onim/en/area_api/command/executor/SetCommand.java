@@ -1,5 +1,6 @@
 package onim.en.area_api.command.executor;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +31,7 @@ public class SetCommand extends AreaCommandExecutor {
       return false;
     }
 
-    String paramType = args[0];
+    ParamType paramType = ParamType.fromLiteral(args[0]);
     AreaModel area = AreaManager.getAreaByName(args[1]);
 
     if (area == null) {
@@ -41,20 +42,20 @@ public class SetCommand extends AreaCommandExecutor {
     String[] subArgs = Arrays.copyOfRange(args, 2, args.length);
 
     switch (paramType) {
-    case "name":
+    case Name:
       if (subArgs.length == 0) {
         this.error(player, "Empty string is not allowed");
         return false;
       }
       area.setAreaName(String.join(" ", subArgs));
       break;
-    case "message":
+    case Message:
       area.setAreaMessage(String.join(" ", subArgs));
       break;
-    case "decoration":
+    case Decoration:
       area.setDecorators(this.toDecorationArray(subArgs));
       break;
-    case "area":
+    case Area:
       if (subArgs.length == 0) {
         this.error(player, "Please specify the area type to execute.");
         return false;
@@ -62,6 +63,40 @@ public class SetCommand extends AreaCommandExecutor {
       return this.areaExecutor(player, area, subArgs);
     }
     return false;
+  }
+
+  @Override
+  public List<String> completion(String[] args) {
+    List<String> list = new ArrayList<>();
+
+    switch (args.length) {
+    case 1:
+      for (ParamType type : ParamType.values()) {
+        list.add(type.getLiteral());
+      }
+      break;
+    case 2:
+      list.addAll(AreaManager.getAreaNames());
+      break;
+    case 3:
+      ParamType paramType = ParamType.fromLiteral(args[0]);
+      switch (paramType) {
+      case Area:
+        for (AreaType type : AreaType.values()) {
+          list.add(type.getLiteral());
+        }
+        break;
+      case Decoration:
+        for (ChatColor color : ChatColor.values()) {
+          list.add(color.name());
+        }
+        break;
+      default:
+        break;
+      }
+    }
+
+    return list;
   }
 
   private ChatColor[] toDecorationArray(String[] subArgs) {

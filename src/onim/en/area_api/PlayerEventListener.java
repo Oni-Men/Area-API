@@ -19,7 +19,7 @@ public class PlayerEventListener implements Listener {
   public void onEnterArea(PlayerEnterAreaEvent event) {
     Player player = event.getPlayer();
     AreaModel area = event.getAreaEntered();
-    player.sendTitle(area.getDecoratedName(), area.getDecoratedMessage(), 10, 60, 20);
+    player.sendTitle(area.getDecoratedName(), area.getDecoratedMessage(), 10, 20, 20);
   }
 
   @EventHandler

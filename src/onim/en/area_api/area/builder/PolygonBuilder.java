@@ -1,10 +1,15 @@
 package onim.en.area_api.area.builder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Player;
 
 import com.google.common.base.Preconditions;
@@ -64,6 +69,16 @@ public class PolygonBuilder extends AreaBuilder<PolygonArea> {
     PolygonArea area = new PolygonArea(areaId, areaName, vertexList);
     area.setAreaMessage(areaMessage);
     return area;
+  }
+
+  @Override
+  public Map<Location, BlockData> getCurrentGuide(Player player) {
+    Map<Location, BlockData> blocks = new HashMap<>();
+    BlockData data = Bukkit.createBlockData(Material.LIGHT_BLUE_STAINED_GLASS);
+    for (Location loc : vertexList) {
+      blocks.put(loc, data);
+    }
+    return blocks;
   }
 
 }

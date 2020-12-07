@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import onim.en.area_api.area.AreaStorage;
 import onim.en.area_api.area.AreaTaskWorker;
+import onim.en.area_api.area.builder.AreaBuilderManager;
 import onim.en.area_api.command.AreaCommand;
 
 public class AreaAPI extends JavaPlugin {
@@ -37,6 +38,7 @@ public class AreaAPI extends JavaPlugin {
 
   @Override
   public void onDisable() {
+    AreaBuilderManager.onDisable();
     AreaStorage.saveAreas();
   }
 

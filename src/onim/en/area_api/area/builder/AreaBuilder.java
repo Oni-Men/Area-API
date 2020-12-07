@@ -1,13 +1,18 @@
 package onim.en.area_api.area.builder;
 
 import java.util.List;
+import java.util.Map;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Player;
 
 import com.google.common.base.Preconditions;
 
+import onim.en.area_api.AreaAPI;
 import onim.en.area_api.area.AreaManager;
 import onim.en.area_api.area.AreaModel;
 import onim.en.area_api.area.model.AbstractArea;
@@ -69,8 +74,17 @@ public abstract class AreaBuilder<T extends AbstractArea> {
 
     AreaManager.register(create);
     AreaBuilderManager.unregister(this.player.getUniqueId());
+    Bukkit.getScheduler().runTaskLater(AreaAPI.getInstance(), () -> {
+      AreaBuilderManager.restoreBlockChanges(player);
+    }, 2L);
 
     this.player.sendMessage(ChatColor.GREEN + String.format("\"%s\" created successfully.", create.getAreaName()));
+  }
+
+  public void updateGuide() {
+    AreaBuilderManager.restoreBlockChanges(player);
+    AreaBuilderManager.registerGuides(player.getUniqueId(), this.getCurrentGuide(player));
+    AreaBuilderManager.sendBlockChanges(player);
   }
 
   public void sendInstruction() {
@@ -80,6 +94,8 @@ public abstract class AreaBuilder<T extends AbstractArea> {
 
     instructions.forEach(i -> player.sendMessage(ChatColor.LIGHT_PURPLE + i));
   }
+
+  public abstract Map<Location, BlockData> getCurrentGuide(Player player);
 
   public abstract void onLeftClick(Block block);
 

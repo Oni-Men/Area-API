@@ -9,9 +9,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import onim.en.area_api.area.AreaModel;
-import onim.en.area_api.area.builder.AreaBuilder;
 import onim.en.area_api.area.builder.AreaBuilderManager;
-import onim.en.area_api.area.model.AbstractArea;
 import onim.en.area_api.event.PlayerEnterAreaEvent;
 import onim.en.area_api.event.PlayerLeaveAreaEvent;
 
@@ -42,19 +40,12 @@ public class PlayerEventListener implements Listener {
     if (block == null)
       return;
 
-    AreaBuilder<? extends AbstractArea> builder = AreaBuilderManager.getBuilderByPlayer(event.getPlayer());
-
-    if (builder == null)
-      return;
-
-    event.setCancelled(true);
-
     switch (event.getAction()) {
     case LEFT_CLICK_BLOCK:
-      builder.onLeftClick(block);
+      event.setCancelled(AreaBuilderManager.onLeftClick(event.getPlayer(), block));
       break;
     case RIGHT_CLICK_BLOCK:
-      builder.onRightClick(block);
+      event.setCancelled(AreaBuilderManager.onRightClick(event.getPlayer(), block));
       break;
     default:
       break;

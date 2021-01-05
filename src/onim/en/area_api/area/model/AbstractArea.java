@@ -1,7 +1,7 @@
 package onim.en.area_api.area.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -9,6 +9,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import com.google.gson.annotations.Expose;
+import com.sun.istack.internal.NotNull;
 
 import onim.en.area_api.area.AreaModel;
 import onim.en.area_api.area.AreaType;
@@ -17,7 +18,8 @@ import onim.en.area_api.event.PlayerLeaveAreaEvent;
 
 public abstract class AbstractArea implements AreaModel {
 
-  private List<UUID> players;
+  @NotNull
+  private final Set<UUID> players;
   @Expose
   protected UUID worldUniqueId;
   @Expose
@@ -35,7 +37,7 @@ public abstract class AbstractArea implements AreaModel {
     this.areaType = areaType;
     this.areaId = areaId;
     this.areaName = areaName;
-    this.players = new ArrayList<>();
+    this.players = new HashSet<>();
   }
 
   @Override
@@ -64,7 +66,7 @@ public abstract class AbstractArea implements AreaModel {
   }
 
   @Override
-  public List<UUID> getPlayersInsideArea() {
+  public Set<UUID> getPlayersInsideArea() {
     return this.players;
   }
 
@@ -110,29 +112,15 @@ public abstract class AbstractArea implements AreaModel {
   }
 
   protected void removeIfPresent(Player player) {
-    if (this.players == null) {
-      this.players = new ArrayList<>();
-      return;
+    if (this.players.remove(player.getUniqueId())) {
+      Bukkit.getPluginManager().callEvent(new PlayerLeaveAreaEvent(player, this));
     }
-
-    if (!this.players.contains(player.getUniqueId()))
-      return;
-
-    this.players.remove(player.getUniqueId());
-    Bukkit.getPluginManager().callEvent(new PlayerLeaveAreaEvent(player, this));
   }
 
   protected void addIfAbsent(Player player) {
-    if (this.players == null) {
-      this.players = new ArrayList<>();
-      return;
+    if (this.players.add(player.getUniqueId())) {
+      Bukkit.getPluginManager().callEvent(new PlayerEnterAreaEvent(player, this));
     }
-
-    if (this.players.contains(player.getUniqueId()))
-      return;
-
-    this.players.add(player.getUniqueId());
-    Bukkit.getPluginManager().callEvent(new PlayerEnterAreaEvent(player, this));
   }
 
   @Override

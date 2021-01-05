@@ -1,7 +1,7 @@
 package onim.en.area_api.area;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.ChatColor;
@@ -31,7 +31,7 @@ public interface AreaModel {
 
   boolean isPlayerInside(Player player);
 
-  List<UUID> getPlayersInsideArea();
+  Set<UUID> getPlayersInsideArea();
 
   public void update(Collection<? extends Player> collection);
 }
